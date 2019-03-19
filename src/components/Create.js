@@ -59,10 +59,12 @@ class Create extends Component {
                 <label for="title">Title:</label>
                 <input type="text" className="form-control" name="title" value={title} onChange={this.onChange} placeholder="Title" />
               </div>
+              
               <div className="form-group">
                 <label for="description">Description:</label>
-                <textArea className="form-control" name="description" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textArea>
+                <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textarea>
               </div>
+
               <div className="form-group">
                 <label for="author">Author:</label>
                 <input type="text" className="form-control" name="author" value={author} onChange={this.onChange} placeholder="Author" />
