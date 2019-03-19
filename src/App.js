@@ -55,7 +55,7 @@ class App extends Component {
               </thead>
               <tbody>
                 {this.state.boards.map(board =>
-                  <tr>
+                  <tr key={board.key}>
                     <td><Link to={`/show/${board.key}`}>{board.title}</Link></td>
                     <td>{board.description}</td>
                     <td>{board.author}</td>
