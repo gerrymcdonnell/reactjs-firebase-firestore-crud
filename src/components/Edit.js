@@ -74,15 +74,15 @@ class Edit extends Component {
             <h4><Link to={`/show/${this.state.key}`} className="btn btn-primary">Board List</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
-                <label for="title">Title:</label>
+                <label htmlFor="title">Title:</label>
                 <input type="text" className="form-control" name="title" defaultValue={this.state.title} onChange={this.onChange} placeholder="Title" />
               </div>
               <div className="form-group">
-                <label for="description">Description:</label>
+                <label htmlFor="description">Description:</label>
                 <input type="text" className="form-control" name="description" defaultValue={this.state.description} onChange={this.onChange} placeholder="Description" />
               </div>
               <div className="form-group">
-                <label for="author">Author:</label>
+                <label htmlFor="author">Author:</label>
                 <input type="text" className="form-control" name="author" defaultValue={this.state.author} onChange={this.onChange} placeholder="Author" />
               </div>
               <button type="submit" className="btn btn-success">Submit</button>
