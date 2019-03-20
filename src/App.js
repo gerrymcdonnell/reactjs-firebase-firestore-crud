@@ -78,6 +78,8 @@ class App extends Component {
 
                     <td>
                       <button onClick={this.delete.bind(this, board.key)} className="btn btn-danger">Delete</button>
+                      |
+                      <Link to={`/edit/${board.key}`} className="btn btn-success">Edit</Link>&nbsp;
                     </td>
 
                   </tr>
