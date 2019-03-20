@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 
@@ -26,21 +26,21 @@ class Create extends Component {
 
     const { title, description, author, created } = this.state;
 
+    var createdDate = new Date().toGMTString();
+    console.log("created date:", createdDate);
+
     this.ref.add({
       title,
       description,
       author,
-      created
+      created: createdDate
     }).then((docRef) => {
-
-      var createdDate = new Date().toGMTString();
-      console.log("created date:", created);
 
       this.setState({
         title: '',
         description: '',
         author: '',
-        created: createdDate
+        created: ''
       });
       this.props.history.push("/")
     })
@@ -50,7 +50,7 @@ class Create extends Component {
   }
 
   render() {
-    const { title, description, author } = this.state;
+    const { title, description, author, created } = this.state;
     return (
       <div className="container">
         <div className="panel panel-default">
@@ -62,8 +62,8 @@ class Create extends Component {
           <div className="panel-body">
             <h4><Link to="/" className="btn btn-primary">Book List</Link></h4>
             <form onSubmit={this.onSubmit}>
-              <
-                div className="form-group">
+
+              <div className="form-group">
                 <label htmlFor="title">Title:</label>
                 <input type="text" className="form-control" name="title" defaultValue={title} onChange={this.onChange} placeholder="Title" />
               </div>
@@ -83,9 +83,13 @@ class Create extends Component {
                 <input type="text" className="form-control" name="author" defaultValue={author} onChange={this.onChange} placeholder="Author" />
               </div>
 
-
+              <div className="form-group">
+                <label htmlFor="author">created: {created}</label>
+                {console.log("created date:", created)}
+              </div>
 
               <button type="submit" className="btn btn-success">Submit</button>
+
             </form>
           </div>
         </div>
