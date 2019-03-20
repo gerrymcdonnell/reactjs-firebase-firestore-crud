@@ -46,7 +46,7 @@ class Index extends Component {
   }
 
   render() {
-    return (
+    return (      
       <div className="container">
         <div className="panel panel-default">
           <div className="panel-heading">
@@ -78,7 +78,7 @@ class Index extends Component {
 
                     <td>
                       <button onClick={this.delete.bind(this, board.key)} className="btn btn-danger">Delete</button>
-                      |
+                      
                       <Link to={`/edit/${board.key}`} className="btn btn-success">Edit</Link>&nbsp;
                     </td>
 
