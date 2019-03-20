@@ -8,15 +8,16 @@ import * as serviceWorker from './serviceWorker';
 import Edit from './components/Edit';
 import Create from './components/Create';
 import Show from './components/Show';
+import Index from './components/Index';
 
 ReactDOM.render(
   <Router>
-      <div>
-        <Route exact path='/' component={App} />
-        <Route path='/edit/:id' component={Edit} />
-        <Route path='/create' component={Create} />
-        <Route path='/show/:id' component={Show} />
-      </div>
+    <div>
+      <Route exact path='/' component={Index} />
+      <Route path='/edit/:id' component={Edit} />
+      <Route path='/create' component={Create} />
+      <Route path='/show/:id' component={Show} />
+    </div>
   </Router>,
   document.getElementById('root')
 );
