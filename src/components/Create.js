@@ -11,7 +11,8 @@ class Create extends Component {
     this.state = {
       title: '',
       description: '',
-      author: ''
+      author: '',
+      created: ''
     };
   }
   onChange = (e) => {
@@ -23,17 +24,23 @@ class Create extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, author } = this.state;
+    const { title, description, author, created } = this.state;
 
     this.ref.add({
       title,
       description,
-      author
+      author,
+      created
     }).then((docRef) => {
+
+      var createdDate = new Date().toGMTString();
+      console.log("created date:", created);
+
       this.setState({
         title: '',
         description: '',
-        author: ''
+        author: '',
+        created: createdDate
       });
       this.props.history.push("/")
     })
@@ -55,7 +62,8 @@ class Create extends Component {
           <div className="panel-body">
             <h4><Link to="/" className="btn btn-primary">Book List</Link></h4>
             <form onSubmit={this.onSubmit}>
-              <div className="form-group">
+              <
+                div className="form-group">
                 <label htmlFor="title">Title:</label>
                 <input type="text" className="form-control" name="title" defaultValue={title} onChange={this.onChange} placeholder="Title" />
               </div>
@@ -74,6 +82,9 @@ class Create extends Component {
                 <label htmlFor="author">Author:</label>
                 <input type="text" className="form-control" name="author" defaultValue={author} onChange={this.onChange} placeholder="Author" />
               </div>
+
+
+
               <button type="submit" className="btn btn-success">Submit</button>
             </form>
           </div>

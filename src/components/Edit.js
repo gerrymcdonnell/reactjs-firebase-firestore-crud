@@ -10,7 +10,8 @@ class Edit extends Component {
       key: '',
       title: '',
       description: '',
-      author: ''
+      author: '',
+      created:''
     };
   }
 
@@ -23,7 +24,8 @@ class Edit extends Component {
           key: doc.id,
           title: board.title,
           description: board.description,
-          author: board.author
+          author: board.author,
+          created:board.created
         });
       } else {
         console.log("No such document!");
@@ -40,19 +42,21 @@ class Edit extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, author } = this.state;
+    const { title, description, author,created } = this.state;
 
     const updateRef = firebase.firestore().collection('boards').doc(this.state.key);
     updateRef.set({
       title,
       description,
-      author
+      author,
+      created
     }).then((docRef) => {
       this.setState({
         key: '',
         title: '',
         description: '',
-        author: ''
+        author: '',
+        created
       });
       this.props.history.push("/show/" + this.props.match.params.id)
     })
@@ -73,18 +77,22 @@ class Edit extends Component {
           <div className="panel-body">
             <h4><Link to={`/show/${this.state.key}`} className="btn btn-primary">Board List</Link></h4>
             <form onSubmit={this.onSubmit}>
+              
               <div className="form-group">
                 <label htmlFor="title">Title:</label>
                 <input type="text" className="form-control" name="title" defaultValue={this.state.title} onChange={this.onChange} placeholder="Title" />
               </div>
+
               <div className="form-group">
                 <label htmlFor="description">Description:</label>
                 <input type="text" className="form-control" name="description" defaultValue={this.state.description} onChange={this.onChange} placeholder="Description" />
               </div>
+
               <div className="form-group">
                 <label htmlFor="author">Author:</label>
                 <input type="text" className="form-control" name="author" defaultValue={this.state.author} onChange={this.onChange} placeholder="Author" />
               </div>
+
               <button type="submit" className="btn btn-success">Submit</button>
             </form>
           </div>
