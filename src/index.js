@@ -9,6 +9,7 @@ import Edit from './components/Edit';
 import Create from './components/Create';
 import Show from './components/Show';
 import Index from './components/Index';
+import MaterialDemo from './materialDemo';
 
 ReactDOM.render(
   <Router>
@@ -17,6 +18,8 @@ ReactDOM.render(
       <Route path='/edit/:id' component={Edit} />
       <Route path='/create' component={Create} />
       <Route path='/show/:id' component={Show} />
+
+      <Route path='/materialdemo' component={MaterialDemo} />
     </div>
   </Router>,
   document.getElementById('root')

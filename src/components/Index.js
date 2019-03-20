@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import firebase from '../Firebase';
 
+
+
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +48,7 @@ class Index extends Component {
   }
 
   render() {
-    return (      
+    return (
       <div className="container">
         <div className="panel panel-default">
           <div className="panel-heading">
@@ -55,7 +57,14 @@ class Index extends Component {
             </h3>
           </div>
           <div className="panel-body">
-            <h4><Link to="/create" className="btn btn-primary">Add Board</Link></h4>
+
+            <h4>
+              <Link to="/create" className="btn btn-primary">Add Board</Link>
+              &nbsp;
+              <Link to="/materialdemo" className="btn btn-primary">materialdemo</Link>
+            </h4>
+
+
             <table className="table table-stripe">
               <thead>
                 <tr>
@@ -78,7 +87,7 @@ class Index extends Component {
 
                     <td>
                       <button onClick={this.delete.bind(this, board.key)} className="btn btn-danger">Delete</button>
-                      
+
                       <Link to={`/edit/${board.key}`} className="btn btn-success">Edit</Link>&nbsp;
                     </td>
 
