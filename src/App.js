@@ -16,7 +16,7 @@ class App extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const boards = [];
     querySnapshot.forEach((doc) => {
-      const { title, description, author,created } = doc.data();
+      const { title, description, author, created } = doc.data();
       boards.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -33,6 +33,16 @@ class App extends Component {
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+  }
+
+  //copied from show component
+  delete(id) {
+    firebase.firestore().collection('boards').doc(id).delete().then(() => {
+      console.log("Document successfully deleted!");
+      this.props.history.push("/")
+    }).catch((error) => {
+      console.error("Error removing document: ", error);
+    });
   }
 
   render() {
@@ -53,9 +63,11 @@ class App extends Component {
                   <th>Description</th>
                   <th>Author</th>
                   <th>Created</th>
+
+                  <th>actions</th>
                 </tr>
               </thead>
-              
+
               <tbody>
                 {this.state.boards.map(board =>
                   <tr key={board.key}>
@@ -63,10 +75,15 @@ class App extends Component {
                     <td>{board.description}</td>
                     <td>{board.author}</td>
                     <td>{board.created}</td>
+
+                    <td>
+                      <button onClick={this.delete.bind(this, board.key)} className="btn btn-danger">Delete</button>
+                    </td>
+
                   </tr>
                 )}
               </tbody>
-              
+
             </table>
           </div>
         </div>
